@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "deepmerge": "^4.2.2",
+    "shaka-player": "^3.3.0",
     "vue": "^3.0.0",
     "vuex": "^4.0.0-0"
   },

@@ -1,16 +1,20 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div id="container" ref="container">
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import Player from '@/core';
 
 export default defineComponent({
   name: 'App',
   components: {
-    HelloWorld,
+  },
+  mounted() {
+    const player = new Player(this.$refs.container as HTMLElement);
+    player.load('https://storage.googleapis.com/shaka-demo-assets/angel-one/dash.mpd')
+      .then(() => player.play());
   },
 });
 </script>
