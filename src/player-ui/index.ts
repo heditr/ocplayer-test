@@ -1,6 +1,7 @@
 import { createApp } from 'vue';
 import { PlayerI } from '@/core/interfaces/PlayerI';
 import PlayerApp from '@/player-ui/components/PlayerApp.vue';
+import '@/player-ui/styles/wrapper.scss';
 
 export default class PlayerUi {
   player: PlayerI;
@@ -12,7 +13,9 @@ export default class PlayerUi {
 
   init() {
     const uiContainer = document.createElement('div');
+    uiContainer.className = 'ocplayer__wrapper';
     this.player.container.appendChild(uiContainer);
-    createApp(PlayerApp, { player: this.player }).mount(uiContainer);
+    createApp(PlayerApp, { player: this.player })
+      .mount(uiContainer);
   }
 }
