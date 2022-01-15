@@ -14,8 +14,15 @@ export default class DomController {
 
   static createVideoElement(config:Config):HTMLMediaElement {
     const video = document.createElement('video');
-    video.style.width = `${config.dimensions.width}px`;
-    video.style.height = `${config.dimensions.height}px`;
+    video.setAttribute('playsinline', 'true');
+    video.volume = 0.5;
+
+    video.controls = false;
+    video.style.width = '100%';
+    video.style.height = '100%';
+    video.style.position = 'absolute';
+    video.style.backgroundColor = 'black';
+    video.crossOrigin = 'anonymous';
     return video;
   }
 

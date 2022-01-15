@@ -5,6 +5,7 @@ import MediaController from '@/core/media';
 import shaka from '@/core/shaka';
 import PlayerUi from '@/player-ui';
 import { PlayerI } from '@/core/interfaces/PlayerI';
+import { CustomHtmlMediaElement } from '@/core/types/CustomHtmlMediaElement';
 
 const DEFAULT_CONFIG:Config = {
   src: '',
@@ -25,9 +26,11 @@ export default class Player implements PlayerI {
 
   domController: DomController;
 
+  videoElement: CustomHtmlMediaElement;
+
   ui: PlayerUi;
 
-  private mediaPlayer: typeof shaka.Player;
+  mediaPlayer: typeof shaka.Player;
 
   constructor(container: HTMLElement, config: Config = DEFAULT_CONFIG) {
     if (!container) throw new Error('Missing dom container');
@@ -37,6 +40,8 @@ export default class Player implements PlayerI {
     this.mediaController = new MediaController(this.config);
     this.domController = new DomController(container, this.config);
     this.mediaPlayer = DomController.createPlayer(this.domController.videoElement);
+    this.videoElement = this.domController.videoElement as CustomHtmlMediaElement;
+    console.log({ dd: this.mediaPlayer.getMediaElement() });
     this.ui = new PlayerUi(this);
   }
 

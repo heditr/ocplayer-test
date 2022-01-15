@@ -1,5 +1,5 @@
 <template>
-  <div id="container" ref="container">
+  <div id="container" style="height: 640px;width: 640px" ref="container">
   </div>
 </template>
 
@@ -14,7 +14,7 @@ export default defineComponent({
   mounted() {
     const player = new Player(this.$refs.container as HTMLElement);
     player.load('https://storage.googleapis.com/shaka-demo-assets/angel-one/dash.mpd')
-      .then(() => player.play());
+      .then(() => console.log('loaded'));
   },
 });
 </script>
