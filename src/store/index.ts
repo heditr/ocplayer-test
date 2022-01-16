@@ -1,5 +1,4 @@
 import { createStore } from 'vuex';
-import playerUI from '../player-ui/store';
 
 export default createStore({
   state: {
@@ -9,6 +8,5 @@ export default createStore({
   actions: {
   },
   modules: {
-    playerUI,
   },
 });

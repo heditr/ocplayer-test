@@ -1,12 +1,18 @@
 import { createStore } from 'vuex';
+import { UiModule } from '@/player-ui/store/modules/ui';
+import { RootState } from '@/player-ui/store/RootState';
+import { PlaybackModule } from '@/player-ui/store/modules/playback';
 
-export default createStore({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
-  modules: {
-  },
+const state:RootState = {
+  debug: false,
+};
+
+const modules = {
+  ui: UiModule,
+  playback: PlaybackModule,
+};
+
+export const storeFactory = () => createStore({
+  state,
+  modules,
 });

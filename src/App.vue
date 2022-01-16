@@ -1,11 +1,18 @@
 <template>
-  <div id="container" style="height: 640px;width: 640px" ref="container">
+  <div id="container" ref="container">
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
 import Player from '@/core';
+import { PlayerI } from '@/core/interfaces/PlayerI';
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+declare global {
+  interface Window { Player: PlayerI; }
+}
 
 export default defineComponent({
   name: 'App',
@@ -13,6 +20,7 @@ export default defineComponent({
   },
   mounted() {
     const player = new Player(this.$refs.container as HTMLElement);
+    window.Player = player;
     player.load('https://storage.googleapis.com/shaka-demo-assets/angel-one/dash.mpd')
       .then(() => console.log('loaded'));
   },

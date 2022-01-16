@@ -1,3 +1,6 @@
 export interface UiConfig {
-  controlPanelElements: Array<string>,
+  controlPanelElements?: Array<string>,
+  addSeekBar?: boolean,
+  addBigPlayButton?: boolean,
+  overflowMenuButtons?: Array<string>,
 }
