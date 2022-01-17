@@ -10,6 +10,9 @@ export default class DomController {
     this.container = container;
     this.videoElement = DomController.createVideoElement(config);
     this.container.appendChild(this.videoElement);
+    this.container.classList.add('ocplayer__container');
+    this.container.style.width = `${config.dimensions.width}px`;
+    this.container.style.height = `${config.dimensions.height}px`;
   }
 
   static createVideoElement(config:Config):HTMLMediaElement {

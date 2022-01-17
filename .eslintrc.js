@@ -3,9 +3,6 @@ module.exports = {
   env: {
     node: true,
   },
-  globals: {
-    shaka: true
-  },
   extends: [
     'plugin:vue/vue3-essential',
     '@vue/airbnb',

@@ -1,7 +1,7 @@
 export interface Config {
-  src: string,
+  src?: string,
   backgroundImage?: string,
-  autostart: boolean,
+  autostart?: boolean,
   dimensions: {
     width: number,
     height: number,

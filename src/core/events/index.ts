@@ -1,16 +1,18 @@
-import { BaseError } from '@/core/types/Error';
-import shaka from '@/core/shaka';
+import {
+  MediaPlayerEventList,
+  VideoElementEventList,
+} from '@/core/events/EventList';
+import { Store } from 'vuex';
+import { RootState } from '@/player-ui/store/RootState';
+import { PlayerI } from '@/core/interfaces/PlayerI';
 
-function onError(error:BaseError) {
-  // Log the error.
-  console.error('Error code', error.code, 'object', error);
-}
+const eventListeners = (player:PlayerI, store:Store<RootState>) => {
+  MediaPlayerEventList.forEach(([type, cb]) => {
+    player.mediaPlayer.addEventListener(type, cb.bind(null, player, store));
+  });
+  VideoElementEventList.forEach(([type, cb]) => {
+    player.videoElement.addEventListener(type, cb.bind(null, player, store));
+  });
+};
 
-export function onErrorEvent(event:typeof shaka.util.Error) {
-  // Extract the shaka.util.Error object from the event.
-  const error = {
-    code: event.detail.code,
-    message: event.detail.message,
-  };
-  onError(event.detail);
-}
+export default eventListeners;

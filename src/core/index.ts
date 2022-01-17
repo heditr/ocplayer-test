@@ -6,6 +6,9 @@ import shaka from '@/core/shaka';
 import PlayerUi from '@/player-ui';
 import { PlayerI } from '@/core/interfaces/PlayerI';
 import { CustomHtmlMediaElement } from '@/core/types/CustomHtmlMediaElement';
+import createStore from '@/core/binding';
+import { Store } from 'vuex';
+import { RootState } from '@/player-ui/store/RootState';
 
 const DEFAULT_CONFIG:Config = {
   src: '',
@@ -30,6 +33,8 @@ export default class Player implements PlayerI {
 
   ui: PlayerUi;
 
+  store: Store<RootState>;
+
   mediaPlayer: typeof shaka.Player;
 
   constructor(container: HTMLElement, config: Config = DEFAULT_CONFIG) {
@@ -41,7 +46,7 @@ export default class Player implements PlayerI {
     this.domController = new DomController(container, this.config);
     this.mediaPlayer = DomController.createPlayer(this.domController.videoElement);
     this.videoElement = this.domController.videoElement as CustomHtmlMediaElement;
-    console.log({ dd: this.mediaPlayer.getMediaElement() });
+    this.store = createStore(this);
     this.ui = new PlayerUi(this);
   }
 
@@ -49,23 +54,23 @@ export default class Player implements PlayerI {
     return this.mediaPlayer.load(url);
   }
 
-  play() {
-    this.mediaPlayer.play();
+  play():void {
+    this.videoElement.play();
   }
 
-  pause() {
-    this.mediaPlayer.pause();
+  pause():void {
+    this.videoElement.pause();
   }
 
-  seek(at:number) {
+  seek(at:number):void {
     this.mediaPlayer.setCurrentTime(at);
   }
 
-  stop() {
-    this.mediaPlayer.stop();
+  stop():void {
+    this.mediaPlayer.pause();
   }
 
-  on(eventName:string, callback:Event) {
+  on(eventName:string, callback:Event):void {
     this.mediaPlayer.addEventListener(eventName, callback);
   }
 }

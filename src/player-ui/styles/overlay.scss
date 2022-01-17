@@ -1,0 +1,14 @@
+&__overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  transition: opacity .6s;
+  color: #FFF;
+  font-size: 20px;
+  &--hidden {
+    opacity: 0;
+  }
+}
