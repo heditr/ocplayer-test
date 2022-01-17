@@ -3,7 +3,7 @@
     <ToggleSvgButton
       base-svg="play.svg"
       toggle-svg="pause.svg"
-      :toggle=playing
+      :toggle=!paused
       @click="playOrPause"
     ></ToggleSvgButton>
   </div>
@@ -14,19 +14,18 @@ import { defineComponent, inject } from 'vue';
 import { mapState } from 'vuex';
 import { RootState } from '@/player-ui/store/RootState';
 import ToggleSvgButton from '@/player-ui/components/commons/ToggleSvgButton/ToggleSvgButton.vue';
-import '@/player-ui/components/MainControls/main-controls.scss';
 import { PlayerKey } from '@/player-ui/PlayerKey';
+import '@/player-ui/components/MainControls/main-controls.scss';
 
 export default defineComponent({
   name: 'MainControls',
   components: { ToggleSvgButton },
   methods: {
     playOrPause() {
-      console.log({ MainControls: this });
-      if (this.player.store.state.playback?.playing) {
-        this.player.pause();
-      } else {
+      if (this.player.videoElement.paused) {
         this.player.play();
+      } else {
+        this.player.pause();
       }
     },
   },
@@ -41,7 +40,7 @@ export default defineComponent({
   },
   computed: {
     ...mapState<RootState>({
-      playing: (state:RootState) => state.playback?.playing,
+      paused: (state:RootState) => state.playback?.pause,
     }),
   },
 });

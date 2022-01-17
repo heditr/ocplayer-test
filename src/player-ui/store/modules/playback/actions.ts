@@ -2,7 +2,7 @@ import { ActionTree } from 'vuex';
 import { RootState } from '@/player-ui/store/RootState';
 import {
   PLAYBACK_BUFFERING,
-  PLAYBACK_LOADED, PLAYBACK_PAUSE, PLAYBACK_PLAY,
+  PLAYBACK_LOADED, PLAYBACK_PAUSE, PLAYBACK_PLAY, PLAYBACK_PLAYING,
   PLAYBACK_WAITING,
 } from '@/player-ui/store/modules/playback/actionTypes';
 import { PlaybackState } from '@/player-ui/store/modules/playback/PlaybackState';
@@ -22,5 +22,8 @@ export const actions:ActionTree<PlaybackState, RootState> = {
   },
   [PLAYBACK_PAUSE]: ({ commit }) => {
     commit(PLAYBACK_PAUSE);
+  },
+  [PLAYBACK_PLAYING]: ({ commit }) => {
+    commit(PLAYBACK_PLAYING);
   },
 };

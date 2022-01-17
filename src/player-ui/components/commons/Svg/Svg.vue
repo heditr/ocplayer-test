@@ -1,5 +1,5 @@
 <template>
-  <img class="ocplayer__button-img" :src="url" :width=width :height=height />
+  <img class="ocplayer__button-img" :class="hide" :src="url" :width=width :height=height />
 </template>
 
 <script lang="ts">
@@ -12,6 +12,7 @@ export default defineComponent({
     src: String,
     width: String,
     height: String,
+    hidden: Boolean,
   },
   computed: {
     url: {
@@ -21,6 +22,14 @@ export default defineComponent({
       },
       set(url:string):void {
         this.url = url;
+      },
+    },
+    hide: {
+      get():string {
+        return this.hidden ? 'ocplayer__button-img--hidden' : '';
+      },
+      set(hide:string):void {
+        this.hide = hide;
       },
     },
   },

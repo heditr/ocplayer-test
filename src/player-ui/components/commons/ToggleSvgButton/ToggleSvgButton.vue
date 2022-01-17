@@ -1,7 +1,7 @@
 <template>
   <Button @click="onClick">
-    <Svg v-if="!toggle" height="48" width="48" :src="baseSvg" />
-    <Svg v-if="toggle" height="48" width="48" :src="toggleSvg" />
+    <Svg :hidden="!toggle" height="48" width="48" :src="baseSvg" />
+    <Svg :hidden="toggle" height="48" width="48" :src="toggleSvg" />
   </Button>
 </template>
 
@@ -23,7 +23,6 @@ export default defineComponent({
   },
   methods: {
     onClick(event:Event) {
-      console.log({ event });
       this.$emit('click', event);
     },
   },
