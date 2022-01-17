@@ -10,13 +10,13 @@ import pause from '@/core/events/pause';
 
 export type EventMapListener = [
   string,
-  (player:PlayerI, store:Store<RootState>, event?:any) => void,
+  (player:PlayerI, store:Store<RootState>, event?:Event) => void,
 ]
 export type EventArrListener = Array<EventMapListener>;
 
 const MediaPlayerEventList:EventArrListener = [
   ['error', onErrorEvent],
-  ['buffering', buffering],
+  ['progress', buffering],
   ['loading', waiting],
   ['loaded', loaded],
 ];

@@ -11,7 +11,10 @@ const eventListeners = (player:PlayerI, store:Store<RootState>) => {
     player.mediaPlayer.addEventListener(type, cb.bind(null, player, store));
   });
   VideoElementEventList.forEach(([type, cb]) => {
-    player.videoElement.addEventListener(type, cb.bind(null, player, store));
+    player.videoElement.addEventListener(
+      type as keyof HTMLMediaElementEventMap,
+      cb.bind(null, player, store),
+    );
   });
 };
 

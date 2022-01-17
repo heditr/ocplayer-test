@@ -29,7 +29,7 @@ export default class DomController {
     return video;
   }
 
-  static createPlayer(videoElement:HTMLMediaElement):typeof shaka.Player {
+  static createPlayer(videoElement:HTMLMediaElement): shaka.Player {
     shaka.polyfill.installAll();
     if (shaka.Player.isBrowserSupported()) {
       return new shaka.Player(videoElement);

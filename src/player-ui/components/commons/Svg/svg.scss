@@ -2,5 +2,10 @@
   &__button-img {
     padding: 0;
     margin: 0;
+    opacity: 1;
+    transition: opacity .3s cubic-bezier(0.4,0,1,1);
+    &--hidden {
+      opacity: 0;
+    }
   }
 }

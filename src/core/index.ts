@@ -35,7 +35,7 @@ export default class Player implements PlayerI {
 
   store: Store<RootState>;
 
-  mediaPlayer: typeof shaka.Player;
+  mediaPlayer: shaka.Player;
 
   constructor(container: HTMLElement, config: Config = DEFAULT_CONFIG) {
     if (!container) throw new Error('Missing dom container');
@@ -54,8 +54,8 @@ export default class Player implements PlayerI {
     return this.mediaPlayer.load(url);
   }
 
-  play():void {
-    this.videoElement.play();
+  play():Promise<void> {
+    return this.videoElement.play();
   }
 
   pause():void {
@@ -63,14 +63,15 @@ export default class Player implements PlayerI {
   }
 
   seek(at:number):void {
-    this.mediaPlayer.setCurrentTime(at);
+    this.videoElement.currentTime = at;
   }
 
   stop():void {
-    this.mediaPlayer.pause();
+    this.videoElement.pause();
+    this.videoElement.currentTime = 0;
   }
 
-  on(eventName:string, callback:Event):void {
+  on(eventName:string, callback:EventListener):void {
     this.mediaPlayer.addEventListener(eventName, callback);
   }
 }

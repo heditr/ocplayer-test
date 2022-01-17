@@ -12,9 +12,9 @@ export interface PlayerI {
   pause(): void,
   seek(at:number):void,
   stop():void,
-  on(eventName:string, callback:Event):void,
+  on(eventName:string, callback: (e: Event) => void):void,
   container:HTMLElement,
-  mediaPlayer: typeof shaka.Player,
+  mediaPlayer: shaka.Player,
   videoElement: CustomHtmlMediaElement;
   store:Store<RootState>;
   config:Config
