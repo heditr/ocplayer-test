@@ -3,6 +3,8 @@
 </template>
 
 <script lang="ts">
+import '@/player-ui/components/Spinner/spinner.scss';
+
 export default {
   name: 'Spinner',
 };

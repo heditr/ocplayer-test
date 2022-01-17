@@ -6,7 +6,6 @@ import shaka from '@/core/shaka';
 import PlayerUi from '@/player-ui';
 import { PlayerI } from '@/core/interfaces/PlayerI';
 import { CustomHtmlMediaElement } from '@/core/types/CustomHtmlMediaElement';
-import eventListeners from '@/core/events';
 import createStore from '@/core/binding';
 import { Store } from 'vuex';
 import { RootState } from '@/player-ui/store/RootState';
@@ -55,23 +54,23 @@ export default class Player implements PlayerI {
     return this.mediaPlayer.load(url);
   }
 
-  play() {
-    this.mediaPlayer.play();
+  play():void {
+    this.videoElement.play();
   }
 
-  pause() {
-    this.mediaPlayer.pause();
+  pause():void {
+    this.videoElement.pause();
   }
 
-  seek(at:number) {
+  seek(at:number):void {
     this.mediaPlayer.setCurrentTime(at);
   }
 
-  stop() {
-    this.mediaPlayer.stop();
+  stop():void {
+    this.mediaPlayer.pause();
   }
 
-  on(eventName:string, callback:Event) {
+  on(eventName:string, callback:Event):void {
     this.mediaPlayer.addEventListener(eventName, callback);
   }
 }

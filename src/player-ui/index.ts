@@ -15,6 +15,7 @@ export default class PlayerUi {
     const uiContainer = document.createElement('div');
     uiContainer.className = 'ocplayer__wrapper';
     this.player.container.appendChild(uiContainer);
+
     createApp(PlayerApp, { player: this.player })
       .use(this.player.store).mount(uiContainer);
   }

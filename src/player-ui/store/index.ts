@@ -12,7 +12,9 @@ const modules = {
   playback: PlaybackModule,
 };
 
-export const storeFactory = () => createStore({
+const store = createStore<RootState>({
   state,
   modules,
 });
+
+export const storeFactory = () => store;

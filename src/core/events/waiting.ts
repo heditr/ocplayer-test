@@ -4,7 +4,7 @@ import { RootState } from '@/player-ui/store/RootState';
 import { PLAYBACK_WAITING } from '@/player-ui/store/modules/playback/actionTypes';
 
 const waiting = (player:PlayerI, store:Store<RootState>, event:any) => {
-  console.log('waiting', { event });
+  console.log('waiting');
   store.dispatch(PLAYBACK_WAITING, true);
 };
 

@@ -7,7 +7,6 @@ import { RootState } from '@/player-ui/store/RootState';
 import { PlayerI } from '@/core/interfaces/PlayerI';
 
 const eventListeners = (player:PlayerI, store:Store<RootState>) => {
-  console.log({ player });
   MediaPlayerEventList.forEach(([type, cb]) => {
     player.mediaPlayer.addEventListener(type, cb.bind(null, player, store));
   });

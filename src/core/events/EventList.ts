@@ -4,6 +4,9 @@ import { PlayerI } from '@/core/interfaces/PlayerI';
 import { Store } from 'vuex';
 import { RootState } from '@/player-ui/store/RootState';
 import waiting from '@/core/events/waiting';
+import loaded from '@/core/events/loaded';
+import play from '@/core/events/play';
+import pause from '@/core/events/pause';
 
 export type EventMapListener = [
   string,
@@ -12,13 +15,16 @@ export type EventMapListener = [
 export type EventArrListener = Array<EventMapListener>;
 
 const MediaPlayerEventList:EventArrListener = [
-  ['play', () => { console.log('play'); }],
   ['error', onErrorEvent],
   ['buffering', buffering],
   ['loading', waiting],
+  ['loaded', loaded],
 ];
 const VideoElementEventList:EventArrListener = [
   ['waiting', waiting],
+  ['play', play],
+  ['pause', pause],
+  ['playing', pause],
 ];
 
 export {

@@ -5,6 +5,10 @@ import { actions } from '@/player-ui/store/modules/playback/actions';
 const state:PlaybackState = {
   buffering: false,
   waiting: false,
+  loaded: false,
+  play: false,
+  playing: false,
+  pause: false,
 };
 
 export const PlaybackModule = {

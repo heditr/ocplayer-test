@@ -4,7 +4,7 @@ import { RootState } from '@/player-ui/store/RootState';
 import { PLAYBACK_BUFFERING } from '@/player-ui/store/modules/playback/actionTypes';
 
 const buffering = (player:PlayerI, store:Store<RootState>, event:any) => {
-  console.log({ e: event.buffering });
+  console.log('buffering');
   store.dispatch(PLAYBACK_BUFFERING, event.buffering);
 };
 
